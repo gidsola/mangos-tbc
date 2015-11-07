@@ -84,7 +84,7 @@ enum Classes
     CLASS_SHAMAN        = 7,
     CLASS_MAGE          = 8,
     CLASS_WARLOCK       = 9,
-    // CLASS_UNK2       = 10,unused
+    CLASS_CITIZEN       = 10,                               // used for non ability types. ie: vendors, quest summons and crowd fill.
     CLASS_DRUID         = 11,
 };
 
@@ -96,12 +96,16 @@ enum Classes
     (1<<(CLASS_ROGUE-1))  |(1<<(CLASS_PRIEST-1)) |(1<<(CLASS_SHAMAN-1))| \
     (1<<(CLASS_MAGE-1))   |(1<<(CLASS_WARLOCK-1))|(1<<(CLASS_DRUID-1))   )
 
-#define CLASSMASK_ALL_CREATURES ((1<<(CLASS_WARRIOR-1)) | (1<<(CLASS_PALADIN-1)) | (1<<(CLASS_MAGE-1)) )
-#define MAX_CREATURE_CLASS 3
+#define CLASSMASK_ALL_CREATURES \
+	((1 << (CLASS_WARRIOR - 1)) | (1 << (CLASS_PALADIN - 1)) | (1 << (CLASS_HUNTER - 1)) | \
+	(1 << (CLASS_ROGUE - 1)) | (1 << (CLASS_PRIEST - 1)) | (1 << (CLASS_CITIZEN - 1)) | (1 << (CLASS_SHAMAN - 1)) | \
+	(1 << (CLASS_MAGE - 1)) | (1 << (CLASS_WARLOCK - 1)) | (1 << (CLASS_DRUID - 1)))
+
+#define MAX_CREATURE_CLASS 13
 
 // array index could be used to store class data only Warrior, Paladin and Mage are indexed for creature
 //                                                  W  P                 M
-static const uint8 classToIndex[MAX_CLASSES] = { 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0 };
+static const uint8 classToIndex[MAX_CLASSES] = { 0, 1, 2, 3, 4, 5, 0, 7, 8, 9, 10, 11 };
 
 #define CLASSMASK_WAND_USERS ((1<<(CLASS_PRIEST-1))|(1<<(CLASS_MAGE-1))|(1<<(CLASS_WARLOCK-1)))
 
